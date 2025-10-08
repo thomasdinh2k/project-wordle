@@ -37,13 +37,11 @@ function Game() {
 
         nextGuess[index].content = value;
 
-        console.log("nextGuess", nextGuess);
-
         setUserGuess(nextGuess);
     }
 
     return <>
-        <Guess userGuess={userGuess}/>
+        <Guess userGuess={userGuess} correctAnswer={answer}/>
         <GuessList userGuess={userGuess}/>
         <GuessInput submitGuess={submitGuess}/>
     </>;

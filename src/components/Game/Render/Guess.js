@@ -1,20 +1,44 @@
-export function Guess({userGuess}) {
+import {checkGuess} from "../../../game-helpers";
+import clsx from "clsx";
+
+export function Guess({userGuess, correctAnswer}) {
+
+
+    const calculatedUserGuess = [...userGuess].map((guess) => {
+
+        return {
+            ...guess,
+            status: checkGuess(guess.content, correctAnswer)
+        }
+    })
+
+
+    console.log('calculated', calculatedUserGuess);
 
     return (
         <div className="guess-results">
-            {userGuess.map(({id, content}) => (
+            {calculatedUserGuess.map(({id, status}) => (
 
                 <p key={id} className={"guess"}>
                     {
-                        content.length === 0
+                        status === null
                             ? Array.from({length: 5}).fill("").map((i, idx) => (
                                 <span key={idx} className="cell"></span>
                             ))
-                            : content
-                                .split("")
-                                .map((letter, index) => (
-                                    <span key={index} className="cell">{letter}</span>
-                                ))
+                            : status.map(({letter, status}, index) => (
+                                <span key={index}
+                                      className={clsx(
+                                          'cell',
+                                          {
+                                              'correct': status === 'correct',
+                                              'misplaced': status === 'misplaced',
+                                              'incorrect': status === 'incorrect'
+                                          }
+                                      )}
+                                >
+                                    {letter}</span>
+                            ))
+
                     }
                 </p>
             ))}
