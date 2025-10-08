@@ -19,9 +19,9 @@ function Game() {
                 id: `Guess-${i}`,
                 content: "",
             },
-        );
+        )
     }
-    ;
+
 
     const [userGuess, setUserGuess] = React.useState(initializeUserGuess);
 
@@ -29,7 +29,13 @@ function Game() {
         console.log({guess: value});
 
         const nextGuess = [...userGuess];
-        nextGuess[nextGuess.findIndex(i => i.content === "")].content = value;
+        const index = nextGuess.findIndex(i => i.content === "")
+        if (index === -1) { // Empty guess not found
+            console.warn('Exceeded number of guesses');
+            return;
+        }
+
+        nextGuess[index].content = value;
 
         console.log("nextGuess", nextGuess);
 
