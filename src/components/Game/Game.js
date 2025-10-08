@@ -5,6 +5,7 @@ import {WORDS} from "../../data";
 import GuessInput from "./Input/GuessInput";
 import {GuessList} from "./Render/GuessList";
 import {Guess} from "./Render/Guess";
+import Banner from "./Render/Banner";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -25,25 +26,46 @@ function Game() {
 
     const [userGuess, setUserGuess] = React.useState(initializeUserGuess);
 
-    function submitGuess(value) {
-        console.log({guess: value});
+    const [userTurn, setUserTurn] = React.useState(0);
 
+    const [gameState, setGameState] = React.useState('idle');
+
+    function submitGuess(value) {
         const nextGuess = [...userGuess];
         const index = nextGuess.findIndex(i => i.content === "")
-        if (index === -1) { // Empty guess not found
-            console.warn('Exceeded number of guesses');
-            return;
-        }
+        const nextTurn = userTurn + 1
+        setUserTurn(nextTurn);
 
         nextGuess[index].content = value;
 
         setUserGuess(nextGuess);
+
+        if (nextTurn === 5) {
+            setGameState('lose');
+        }
+
+        if (value === answer) {
+            setGameState('win');
+        }
+
+
     }
 
     return <>
         <Guess userGuess={userGuess} correctAnswer={answer}/>
-        <GuessList userGuess={userGuess}/>
-        <GuessInput submitGuess={submitGuess}/>
+
+        <div className="guess-results">
+            {
+                gameState === "idle"
+                    ? <GuessInput submitGuess={submitGuess}/>
+                    : <Banner
+                        userTurn={userTurn}
+                        correctAnswer={answer}
+                        gameState={gameState}
+                    />
+
+            }
+        </div>
     </>;
 }
 

@@ -16,9 +16,8 @@ export function Guess({userGuess, correctAnswer}) {
     console.log('calculated', calculatedUserGuess);
 
     return (
-        <div className="guess-results">
+        <>
             {calculatedUserGuess.map(({id, status}) => (
-
                 <p key={id} className={"guess"}>
                     {
                         status === null
@@ -42,6 +41,6 @@ export function Guess({userGuess, correctAnswer}) {
                     }
                 </p>
             ))}
-        </div>
+        </>
     );
 }
