@@ -230,3 +230,31 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.keyboard-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .keyboard-character {
+    background-color: #d4d6da;
+    border-radius: 10px;
+    padding: 25px 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: 100%;
+
+    &.misplaced {
+      background: var(--color-warning);
+      border-color: var(--color-warning);
+      color: white;
+    }
+
+    &.incorrect {
+      background: var(--color-gray-300);
+      border-color: var(--color-gray-300);
+      color: white;
+    }
+  }
+}

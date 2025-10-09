@@ -17,7 +17,8 @@ export default function GuessInput({submitGuess}) {
 
     return (
         <form className="guess-input-wrapper" onSubmit={handleSubmit}>
-            <label htmlFor="guess-input">Enter guess:</label>
+            <label htmlFor="guess-input">Enter guess</label>
+            <span className={'character-count'}>{text.length}</span>
             <input id="guess-input" type="text"
                    value={text}
                    onChange={(event) => {

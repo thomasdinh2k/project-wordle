@@ -6,6 +6,7 @@ import GuessInput from "./Input/GuessInput";
 import {GuessList} from "./Render/GuessList";
 import {Guess} from "./Render/Guess";
 import Banner from "./Render/Banner";
+import {Keyboard} from "./Input/Keyboard/Keyboard";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -66,6 +67,8 @@ function Game() {
 
             }
         </div>
+
+        <Keyboard/>
     </>;
 }
 
