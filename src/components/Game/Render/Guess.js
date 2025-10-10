@@ -1,19 +1,7 @@
 import {checkGuess} from "../../../game-helpers";
 import clsx from "clsx";
 
-export function Guess({userGuess, correctAnswer}) {
-
-
-    const calculatedUserGuess = [...userGuess].map((guess) => {
-
-        return {
-            ...guess,
-            status: checkGuess(guess.content, correctAnswer)
-        }
-    })
-
-
-    console.log('calculated', calculatedUserGuess);
+export function Guess({calculatedUserGuess}) {
 
     return (
         <>
@@ -27,12 +15,12 @@ export function Guess({userGuess, correctAnswer}) {
                             : status.map(({letter, status}, index) => (
                                 <span key={index}
                                       className={clsx(
-                                          'cell',
+                                          "cell",
                                           {
-                                              'correct': status === 'correct',
-                                              'misplaced': status === 'misplaced',
-                                              'incorrect': status === 'incorrect'
-                                          }
+                                              "correct": status === "correct",
+                                              "misplaced": status === "misplaced",
+                                              "incorrect": status === "incorrect",
+                                          },
                                       )}
                                 >
                                     {letter}</span>
