@@ -35,19 +35,20 @@ export const Keyboard = ({keyboard, text, setText, submitGuess}) => {
         }
     };
 
-    return <>
+    return <div className={"keyboard"}>
         {qwertyKeyboard.map((row, rowIdx) => {
             return <div className={"keyboard-row"} key={rowIdx}>
-                {row.map((char, charIdx) => <KeyboardCharacter
-                    key={charIdx}
-                    className={"keyboard-character"}
-                    onButtonClick={handleCLickButton}
-                    state={calculateKeyboardState(char)}
-                >
-                    {char}
-                </KeyboardCharacter>)}
+                {row.map((char, charIdx) =>
+                    <KeyboardCharacter
+                        key={charIdx}
+                        onButtonClick={handleCLickButton}
+                        state={calculateKeyboardState(char)}
+                        isSpecialChar={char === "enter" || char === "backspace"}
+                    >
+                        {char}
+                    </KeyboardCharacter>)}
             </div>;
         })}
 
-    </>;
+    </div>;
 };
