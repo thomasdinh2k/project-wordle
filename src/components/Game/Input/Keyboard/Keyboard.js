@@ -26,8 +26,6 @@ export const Keyboard = ({keyboard, text, setText, submitGuess}) => {
         submitGuess(text);
     };
 
-    console.log("Keyboard Status", keyboard);
-
     const calculateKeyboardState = (letter) => {
         const char = letter.toUpperCase();
         if (

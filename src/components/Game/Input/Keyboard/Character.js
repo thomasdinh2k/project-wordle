@@ -1,21 +1,22 @@
 import clsx from "clsx";
 
 export const KeyboardCharacter = ({
-                                      children, onButtonClick, state
-}) => {
+                                      children, onButtonClick, state,
+                                  }) => {
 
 
     return (
         <button
             className={clsx(
-                'keyboard-character',
+                "keyboard-character",
                 {
+                    "correct": state === "correct",
                     "incorrect": state === "incorrect",
                     "misplaced": state === "misplaced",
                 },
             )}
             onClick={() => onButtonClick(children)}
         >{children}</button>
-    )
+    );
 
-}
+};
